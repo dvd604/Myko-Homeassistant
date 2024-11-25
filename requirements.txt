@@ -1,3 +1,2 @@
 homeassistant
-hubspace-async>=0.4.1
 aiofiles>=24.1.0
