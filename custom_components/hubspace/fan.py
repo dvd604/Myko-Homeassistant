@@ -14,7 +14,7 @@ from homeassistant.util.percentage import (
     ordered_list_item_to_percentage,
     percentage_to_ordered_list_item,
 )
-from hubspace_async import HubSpaceState
+from myko_async import HubSpaceState
 
 from . import HubSpaceConfigEntry
 from .const import DOMAIN, ENTITY_FAN

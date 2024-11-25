@@ -8,7 +8,7 @@ from homeassistant.const import CONF_PASSWORD, CONF_TIMEOUT, CONF_USERNAME, Plat
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntry
-from hubspace_async import HubSpaceConnection
+from myko_async import HubSpaceConnection
 
 from .const import DEFAULT_TIMEOUT, UPDATE_INTERVAL_OBSERVATION
 from .coordinator import HubSpaceDataUpdateCoordinator

@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 try:
     # Change here if project is renamed and does not equal the package name
-    dist_name = "hubspace-async"
+    dist_name = "myko-async"
     __version__ = version(dist_name)
 except PackageNotFoundError:  # pragma: no cover
     __version__ = "unknown"

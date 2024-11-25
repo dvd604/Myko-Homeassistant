@@ -1,7 +1,7 @@
 __all__ = ["get_requested_devices"]
 import logging
 
-from hubspace_async import HubSpaceConnection, HubSpaceDevice
+from myko_async import HubSpaceConnection, HubSpaceDevice
 
 logger = logging.getLogger(__name__)
 

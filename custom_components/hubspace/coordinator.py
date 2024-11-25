@@ -9,7 +9,7 @@ from datetime import timedelta
 from typing import Any, NewType, Union
 
 import aiofiles
-import hubspace_async
+import myko_async
 from homeassistant.components.binary_sensor import BinarySensorEntityDescription
 from homeassistant.components.sensor import SensorEntityDescription
 from homeassistant.core import HomeAssistant
@@ -18,10 +18,10 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 from . import anonomyize_data, const, discovery
 
 _LOGGER = logging.getLogger(__name__)
-_LOGGER_HS = logging.getLogger(hubspace_async.__name__)
+_LOGGER_HS = logging.getLogger(myko_async.__name__)
 
 coordinator_data = NewType(
-    "coordinator_data", dict[str, dict[str, Union[hubspace_async.HubSpaceDevice, dict]]]
+    "coordinator_data", dict[str, dict[str, Union[myko_async.HubSpaceDevice, dict]]]
 )
 
 
@@ -29,7 +29,7 @@ class HubSpaceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     def __init__(
         self,
         hass: HomeAssistant,
-        conn: hubspace_async.HubSpaceConnection,
+        conn: myko_async.HubSpaceConnection,
         timeout: int,
         friendly_names: list[str],
         room_names: list[str],
@@ -38,8 +38,8 @@ class HubSpaceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         """Initialize."""
         self.conn = conn
         self.timeout = timeout
-        self.tracked_devices: list[hubspace_async.HubSpaceDevice] = []
-        self.states: dict[str, list[hubspace_async.HubSpaceState]] = {}
+        self.tracked_devices: list[myko_async.HubSpaceDevice] = []
+        self.states: dict[str, list[myko_async.HubSpaceState]] = {}
         self.friendly_names = friendly_names
         self.room_names = room_names
         # We only want to perform the sensor checks once per device
@@ -60,7 +60,7 @@ class HubSpaceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             update_interval=update_interval,
         )
 
-    async def process_sensor_devs(self, dev: hubspace_async.HubSpaceDevice):
+    async def process_sensor_devs(self, dev: myko_async.HubSpaceDevice):
         """Get sensors from a device"""
         if dev.id not in self._sensor_checks:
             _LOGGER.debug(
@@ -79,7 +79,7 @@ class HubSpaceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                 )
 
     async def process_sensor_dev(
-        self, dev: hubspace_async.HubSpaceDevice, sensors: list
+        self, dev: myko_async.HubSpaceDevice, sensors: list
     ) -> list:
         de_duped = []
         for sensor in sensors:
@@ -96,7 +96,7 @@ class HubSpaceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         self,
     ) -> coordinator_data:
         """Update data via library."""
-        # Update the hubspace_async logger to match our logger
+        # Update the myko_async logger to match our logger
         _LOGGER_HS.setLevel(_LOGGER.getEffectiveLevel())
         await self.hs_data_update()
         if _LOGGER.getEffectiveLevel() <= logging.DEBUG:
@@ -165,7 +165,7 @@ class HubSpaceDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
 
 
 async def get_sensors(
-    dev: hubspace_async.HubSpaceDevice,
+    dev: myko_async.HubSpaceDevice,
 ) -> list[SensorEntityDescription]:
     """Get sensors from a device"""
     required_sensors: list[SensorEntityDescription] = []
@@ -184,7 +184,7 @@ async def get_sensors(
 
 
 async def get_binary_sensors(
-    dev: hubspace_async.HubSpaceDevice,
+    dev: myko_async.HubSpaceDevice,
 ) -> list[BinarySensorEntityDescription]:
     required_sensors: list[BinarySensorEntityDescription] = []
     binary_sensors = const.BINARY_SENSORS.get(dev.device_class, {})
@@ -205,7 +205,7 @@ async def get_binary_sensors(
 
 async def create_devices_from_data(
     file_name: str,
-) -> list[hubspace_async.HubSpaceDevice]:
+) -> list[myko_async.HubSpaceDevice]:
     """Generate devices from a data dump
 
     :param file_name: Name of the file to load
@@ -218,9 +218,9 @@ async def create_devices_from_data(
     for device in devices:
         processed_states = []
         for state in device["states"]:
-            processed_states.append(hubspace_async.HubSpaceState(**state))
+            processed_states.append(myko_async.HubSpaceState(**state))
         device["states"] = processed_states
         if "children" not in device:
             device["children"] = []
-        processed.append(hubspace_async.HubSpaceDevice(**device))
+        processed.append(myko_async.HubSpaceDevice(**device))
     return processed

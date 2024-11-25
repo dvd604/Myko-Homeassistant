@@ -10,7 +10,7 @@ from typing import Any, Optional
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import CONF_PASSWORD, CONF_TIMEOUT, CONF_USERNAME
-from hubspace_async import HubSpaceConnection, InvalidAuth, InvalidResponse
+from myko_async import HubSpaceConnection, InvalidAuth, InvalidResponse
 
 from .const import DEFAULT_TIMEOUT, DOMAIN
 from .const import VERSION_MAJOR as const_maj

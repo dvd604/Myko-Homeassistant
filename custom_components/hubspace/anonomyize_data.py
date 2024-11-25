@@ -4,7 +4,7 @@ import logging
 from dataclasses import asdict
 from uuid import uuid4
 
-from hubspace_async import HubSpaceConnection, HubSpaceDevice, HubSpaceState
+from myko_async import HubSpaceConnection, HubSpaceDevice, HubSpaceState
 
 logger = logging.getLogger(__name__)
 
@@ -138,7 +138,7 @@ def get_states(
 
 try:
     import click
-    import hubspace_async
+    import myko_async
 
     user = click.option("--username", required=True, help="HubSpace Username")
     pwd = click.option("--password", required=True, help="HubSpace password")
@@ -152,7 +152,7 @@ try:
         logger.addHandler(logging.StreamHandler())
         logging.getLogger("asyncio").setLevel(logging.WARNING)
         ctx.ensure_object(dict)
-        ctx.obj["conn"] = hubspace_async.HubSpaceConnection(username, password)
+        ctx.obj["conn"] = myko_async.HubSpaceConnection(username, password)
 
     @cli.command()
     @click.pass_context
