@@ -1,3 +1,4 @@
 homeassistant
+myko-async>=0.4.2
 aiofiles>=24.1.0
-myko-async
+
