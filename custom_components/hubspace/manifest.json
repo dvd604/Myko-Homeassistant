@@ -1,6 +1,6 @@
 {
-  "domain": "hubspace",
-  "name": "hubspace",
+  "domain": "myko",
+  "name": "Myko",
   "codeowners": ["@jdeath", "@Expl0dingBanana"],
   "config_flow": true,
   "dependencies": [],
