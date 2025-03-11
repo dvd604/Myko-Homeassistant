@@ -83,13 +83,13 @@ the following setup steps must be run:
      * ```bash
        python -m pip install virtualenv
        python -m virtualenv ~/.virtualenv/myko
-       source ~/.virtualenv/hubspace/bin/activate
+       source ~/.virtualenv/myko/bin/activate
        ```
    * Windows
      * ```bat
        python -m pip install virtualenv
-       python -m virtualenv "%userprofile%\.virtualenv\hubspace"
-       %userprofile%\.virtualenv\hubspace\Scripts\activate.bat
+       python -m virtualenv "%userprofile%\.virtualenv\myko"
+       %userprofile%\.virtualenv\myko\Scripts\activate.bat
        ```
  * Download requirements
    * ```sh
