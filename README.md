@@ -1,9 +1,7 @@
-[![Stargazers repo roster for @jdeath/Hubspace-Homeassistant](https://git-lister.onrender.com/api/stars/jdeath/Hubspace-Homeassistant?limit=30)](https://github.com/jdeath/Hubspace-Homeassistant/stargazers)
-
-Please ask support questions in homeassistant forums: https://community.home-assistant.io/t/add-support-for-hubspace-by-afero/306645
-
 ### Background
-HubSpace is reliant on a cloud connection which means this integration could break at any point. Not all
+Myko operates in a very similar way to HubSpace - this HACS integration is HubSpace-Homeassistant dressed up to look like Myko. Any issues with this integration should be directed here, and not at the HubSpace-Homeassistant developers.
+
+Myko is reliant on a cloud connection which means this integration could break at any point. Not all
 devices may be supported with and developer time will be required to add new devices. Supported
 device types:
 
@@ -34,58 +32,20 @@ device types:
  * water-valve
    * Open / Close
 
-### Breaking Change:
-@Expl0dingBanana did amazing work to allow configuration via the UI, async calls, robust autoscan, and treating devices correctly instead of everything as a light. A few devices are left to be tested.
+### Config
 
 Configuration is done through the `Add Integrations` rather than configuration.yaml.
-Some devices may not work after moving the configuration to the integration. Please review
-the docs on how to gather the device data to send to the developer.
-
-No longer supports services. Many often used services are incorperated into the device types. Hopefully will be added back
-
-Thanks to @dloveall and now @Expl0dingBanana this release will automatically discover most devices. Post an issue, if your device is no longer found.
-
-Since some of the internals were changed, so your light name may change. locks will now be locks, fans actual fans, etc
-
-To solve this, go to Settings->Devices and Services->Entities
-find the light.friendlyname and delete it. then find the light.friendlyname_2 and rename it light.friendlyname
 
 ### Information :
-This integration talks to the HubSpace API to set and retrieve states for all
+This integration talks to the Myko API to set and retrieve states for all
 of your registered devices. Once  the devices are discovered, it will determine
 device capability and show correctly within Home Assistant.
-
-_Thanks to everyone who starred my repo! To star it click on the image below, then it will be on top right. Thanks!_
-
-[![Stargazers repo roster for @jdeath/Hubspace-Homeassistant](https://reporoster.com/stars/jdeath/Hubspace-Homeassistant)](https://github.com/jdeath/hubspace-homeassistant/stargazers)
 
 ### Installation
 
 
 #### UI (Preferred)
-Add this repo as a custom repository in [HACS](https://hacs.xyz/). Add the hubspace integration.
-
-Clicking this badge should add the repo for you:
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=jdeath&repository=Hubspace-Homeassistant&category=integration)
-
-#### Manual
-Manually add repo:
-Adding a custom repo directions `https://hacs.xyz/docs/faq/custom_repositories/`
-Use the custom repo link `https://github.com/jdeath/Hubspace-Homeassistant`
-Select the category type `integration`
-Then once it's there (still in HACS) click the INSTALL button
-
-Manual method: copy the hubspace/ folder in the repo to `<config_dir>/custom_components/hubspace/`.
-
-### Configuration
-After HubSpace has been added through HACs, the
-configuration continues within the UI like other integrations. First select `Settings`
-on the navigation bar, then select `Devices & services`, ensure you are on the
-`Integrations` tab, then finally select `ADD INTEGRATION` at the bottom right
-of the page. Search for `HubSpace` and enter your username and password and
-click `SUBMIT`. Entities should start appearing shortly after clicking submit.
-
-If your username or password is incorrect, the form will not be submitted.
+Add this repo as a custom repository in [HACS](https://hacs.xyz/). Add the Myko integration.
 
 ### Troubleshooting
 
@@ -122,7 +82,7 @@ the following setup steps must be run:
    * Unix
      * ```bash
        python -m pip install virtualenv
-       python -m virtualenv ~/.virtualenv/hubspace
+       python -m virtualenv ~/.virtualenv/myko
        source ~/.virtualenv/hubspace/bin/activate
        ```
    * Windows
@@ -133,7 +93,7 @@ the following setup steps must be run:
        ```
  * Download requirements
    * ```sh
-     python -m pip install requests "hubspace_async>=0.0.5" click
+     python -m pip install requests "myko_async>=0.0.5" click
      ```
  * Goto your home directory
    * Unix
@@ -146,7 +106,7 @@ the following setup steps must be run:
        ```
  * Download the anonymizer code
    * ```bash
-     python -c "import requests; data=requests.get('https://raw.githubusercontent.com/jdeath/Hubspace-Homeassistant/main/custom_components/hubspace/anonomyize_data.py').text; fh=open('anonomyize_data.py', 'w'); fh.write(data); fh.close();"
+     python -c "import requests; data=requests.get('https://raw.githubusercontent.com/dvd604/Myko-Homeassistant/main/custom_components/myko/anonomyize_data.py').text; fh=open('anonomyize_data.py', 'w'); fh.write(data); fh.close();"
      ```
  * Run the anonymizer code (but fill in username and password)
    * Determine the device (gets child_id and friendly names)
@@ -184,4 +144,3 @@ Assistant, the following steps are required to gather the data:
  * Disable debug
    * Settings -> Devices & services -> Integrations -> hubspace -> Disable debug logging
 
-[![Star History Chart](https://api.star-history.com/svg?repos=jdeath/Hubspace-Homeassistant&type=Date)](https://star-history.com/#jdeath/Hubspace-Homeassistant&Date)
