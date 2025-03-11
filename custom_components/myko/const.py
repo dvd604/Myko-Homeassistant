@@ -18,12 +18,12 @@ from homeassistant.const import (
     UnitOfPower,
 )
 
-DOMAIN = "hubspace"
+DOMAIN = "myko"
 CONF_FRIENDLYNAMES: Final = "friendlynames"
 CONF_ROOMNAMES: Final = "roomnames"
 CONF_DEBUG: Final = "debug"
 UPDATE_INTERVAL_OBSERVATION = timedelta(seconds=30)
-HUB_IDENTIFIER: Final[str] = "hubspace_debug"
+HUB_IDENTIFIER: Final[str] = "myko_Debug"
 DEFAULT_TIMEOUT: Final[int] = 10000
 
 VERSION_MAJOR: Final[int] = 2
