@@ -1,7 +1,7 @@
 {
   "domain": "myko",
   "name": "Myko",
-  "codeowners": ["@jdeath", "@Expl0dingBanana", "@dvd604"],
+  "codeowners": ["@dvd604"],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/dvd604/Myko-Homeassistant/blob/main/README.md",
