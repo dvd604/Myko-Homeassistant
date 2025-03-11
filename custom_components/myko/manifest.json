@@ -1,12 +1,12 @@
 {
   "domain": "myko",
   "name": "Myko",
-  "codeowners": ["@jdeath", "@Expl0dingBanana"],
+  "codeowners": ["@jdeath", "@Expl0dingBanana", "@dvd604"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/jdeath/Hubspace-Homeassistant/blob/main/README.md",
+  "documentation": "https://github.com/dvd604/Myko-Homeassistant/blob/main/README.md",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/jdeath/Hubspace-Homeassistant/issues",
+  "issue_tracker": "https://github.com/dvd604/Myko-Homeassistant/issues",
   "loggers": ["myko_async"],
   "requirements": ["myko-async==0.4.2", "aiofiles==24.1.0"],
   "version": "2.0"
